@@ -31,12 +31,14 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                     {/* Column 1 — Brand */}
                     <div>
-                        <img
-                            src={LOGO_URL}
-                            alt="TheoremLabs"
-                            style={{ height: '36px' }}
-                            className="object-contain mb-4"
-                        />
+                        <div className="bg-white rounded-lg px-3 py-2 inline-flex mb-5">
+                            <img
+                                src={LOGO_URL}
+                                alt="TheoremLabs"
+                                style={{ height: '32px' }}
+                                className="object-contain block"
+                            />
+                        </div>
                         <p className="text-white/70 text-sm mb-5 leading-relaxed">
                             Where Fintech Meets the Future of AI
                         </p>

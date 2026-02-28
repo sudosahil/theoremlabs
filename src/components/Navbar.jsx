@@ -114,19 +114,21 @@ export default function Navbar() {
 
     return (
         <nav
-            className="fixed top-0 left-0 right-0 z-50 bg-navy"
-            style={{ height: '72px', borderBottom: '1px solid rgba(255,255,255,0.08)' }}
+            className="fixed top-0 left-0 right-0 z-50"
+            style={{ height: '72px', borderBottom: '1px solid rgba(255,255,255,0.08)', background: '#0D1B2E' }}
             aria-label="Main navigation"
         >
             <div className="max-w-7xl mx-auto px-6 md:px-8 h-full flex items-center justify-between">
-                {/* Logo */}
+                {/* Logo — white background so dark hexagons are visible */}
                 <Link to="/" aria-label="TheoremLabs Home">
-                    <img
-                        src={LOGO_URL}
-                        alt="TheoremLabs Logo"
-                        style={{ height: '40px' }}
-                        className="object-contain"
-                    />
+                    <div className="bg-white rounded-lg px-3 py-1.5 flex items-center">
+                        <img
+                            src={LOGO_URL}
+                            alt="TheoremLabs Logo"
+                            style={{ height: '36px' }}
+                            className="object-contain block"
+                        />
+                    </div>
                 </Link>
 
                 {/* Desktop Nav */}
@@ -156,7 +158,9 @@ export default function Navbar() {
                     <div className="flex-1 bg-black/50" onClick={() => setMobileOpen(false)} />
                     <div className="w-80 max-w-full bg-navy h-full overflow-y-auto shadow-2xl">
                         <div className="flex items-center justify-between p-6 border-b border-white/10">
-                            <img src={LOGO_URL} alt="TheoremLabs Logo" style={{ height: '36px' }} />
+                            <div className="bg-white rounded-lg px-3 py-1.5">
+                                <img src={LOGO_URL} alt="TheoremLabs Logo" style={{ height: '32px' }} className="object-contain block" />
+                            </div>
                             <button
                                 onClick={() => setMobileOpen(false)}
                                 className="text-white p-2"
