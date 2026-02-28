@@ -12,6 +12,7 @@ import shantanuPhoto from '../assets/team/shantanu.png'
 import prashantPhoto from '../assets/team/prashant.png'
 import willPhoto from '../assets/team/will.png'
 import davidPhoto from '../assets/team/david.png'
+import jimPhoto from '../assets/team/jim.png'
 
 const fadeUp = {
   initial: { opacity: 0, y: 28 },
@@ -67,7 +68,7 @@ const teamMembers = [
     title: 'Contributor',
     bio: 'Wealth management expert with over 40 years of experience, including 25 years at Wells Fargo Advisors. Expert at blending finance with technology, having led the creation of 1,700+ APIs for a top advisor platform. Known for a client-first approach combining technical know-how with a personal touch to deliver results and manage risks.',
     linkedin: 'https://www.linkedin.com/in/jim-stevenson-0568b32/',
-    photo: null,
+    photo: jimPhoto,
   },
 ]
 
