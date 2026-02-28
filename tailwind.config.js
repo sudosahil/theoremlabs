@@ -20,7 +20,11 @@ export default {
         cardbg: '#FFFFFF',
       },
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
+        sans: ['DM Sans', 'sans-serif'],
+        display: ['Fraunces', 'serif'],
+      },
+      fontSize: {
+        'display-xl': ['clamp(3rem, 7vw, 5.5rem)', { lineHeight: '1.05', letterSpacing: '-0.025em' }],
       },
     },
   },

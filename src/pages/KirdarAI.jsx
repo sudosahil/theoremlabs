@@ -7,13 +7,7 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { AlertTriangle, Clock, ShieldCheck, BarChart2, CheckCircle2 } from 'lucide-react'
 import CTASection from '../components/CTASection'
-
-const fadeUp = {
-    initial: { opacity: 0, y: 28 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 },
-    viewport: { once: true },
-}
+import { staggerContainer, staggerChild, statReveal, slideInLeft, slideInRight } from '../utils/animations'
 
 const stats = [
     { value: '150+', label: 'Training Hours Saved Per Trainee' },
@@ -47,18 +41,23 @@ export default function KirdarAI() {
             {/* HERO */}
             <section className="bg-navy py-20">
                 <div className="max-w-4xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp}>
-                        <span className="bg-gold text-navy text-xs font-semibold rounded-full px-3 py-1 inline-block mb-5">
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={staggerContainer}
+                    >
+                        <motion.span variants={staggerChild} className="bg-gold text-navy text-xs font-semibold rounded-full px-3 py-1 inline-block mb-5">
                             AI Training Simulator
-                        </span>
-                        <h1 className="text-white mb-6">Kirdar.ai</h1>
-                        <p className="text-white/70 text-lg leading-relaxed mb-8">
+                        </motion.span>
+                        <motion.h1 variants={staggerChild} className="text-white mb-6">Kirdar.ai</motion.h1>
+                        <motion.p variants={staggerChild} className="text-white/70 text-lg leading-relaxed mb-8">
                             Kirdar.ai is a flexible employee training simulator designed to improve customer-facing roles. It offers risk-free, real-world practice, reducing onboarding time and costs while enhancing employee readiness and identifying skill gaps. The platform prioritizes data privacy and provides actionable analytics to track progress and optimize training.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4">
+                        </motion.p>
+                        <motion.div variants={staggerChild} className="flex flex-col sm:flex-row gap-4">
                             <Link to="/lets-be-in-touch" className="btn-primary">Request a Demo</Link>
                             <a href="#solution" className="btn-secondary" onClick={handleSeeHowItWorks}>See How It Works</a>
-                        </div>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
@@ -66,10 +65,22 @@ export default function KirdarAI() {
             {/* THE PROBLEM */}
             <section className="bg-offwhite py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <h2 className="text-textdark">The Traditional Training Dilemma</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-textdark">The Traditional Training Dilemma</motion.h2>
                     </motion.div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
                         {[
                             {
                                 title: 'Time-Consuming',
@@ -77,37 +88,46 @@ export default function KirdarAI() {
                             },
                             {
                                 title: 'Costly',
-                                body: 'The average cost of onboarding a new financial advisor is $10,000 to $50,000, creating significant budget strain. If your employees aren\'t prepared, it leads to high turnover, thus starting the hiring cycle over.',
+                                body: "The average cost of onboarding a new financial advisor is $10,000 to $50,000, creating significant budget strain. If your employees aren't prepared, it leads to high turnover, thus starting the hiring cycle over.",
                             },
                             {
                                 title: 'Inconsistent',
                                 body: 'Current training methods often lack real-world customer scenarios, leaving new reps vulnerable and your customers frustrated with not getting the answers they deserve.',
                             },
-                        ].map((card, i) => (
+                        ].map((card) => (
                             <motion.div
                                 key={card.title}
                                 className="card-light"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <AlertTriangle size={28} className="text-gold mb-4" />
-                                <h3 className="text-textdark mb-3">{card.title}</h3>
+                                <h3 className="text-textdark mb-4">{card.title}</h3>
                                 <p className="text-textmuted leading-relaxed">{card.body}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* THE SOLUTION */}
             <section id="solution" className="bg-navy py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <h2 className="text-white">Kirdar.ai: The Solution</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-white">Kirdar.ai: The Solution</motion.h2>
                     </motion.div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
                         {[
                             {
                                 icon: Clock,
@@ -124,52 +144,56 @@ export default function KirdarAI() {
                                 title: 'Identifies Skill Gaps',
                                 body: 'Kirdar.ai pinpoints areas where employees need additional training, enabling targeted skill development. Kirdar can also provide your training staff with a summary of where most employees struggle, allowing you to adjust your training.',
                             },
-                        ].map((card, i) => (
+                        ].map((card) => (
                             <motion.div
                                 key={card.title}
                                 className="card-dark"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <card.icon size={28} className="text-teal mb-4" />
                                 <h3 className="text-xl mb-3">{card.title}</h3>
                                 <p className="text-white/70 leading-relaxed">{card.body}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* WHAT MAKES KIRDAR UNIQUE */}
             <section className="bg-offwhite py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <h2 className="text-textdark">What Makes Kirdar.ai Unique?</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-textdark">What Makes Kirdar.ai Unique?</motion.h2>
                     </motion.div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                        <div className="space-y-4">
+                        <motion.div
+                            className="space-y-4"
+                            initial="initial"
+                            whileInView="whileInView"
+                            viewport={{ once: true, margin: '-40px' }}
+                            variants={staggerContainer}
+                            {...slideInLeft}
+                        >
                             {uniqueFeatures.map((feature, i) => (
                                 <motion.div
                                     key={i}
                                     className="flex gap-3 items-start"
-                                    initial={{ opacity: 0, x: -16 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.3, delay: i * 0.07 }}
-                                    viewport={{ once: true }}
+                                    variants={staggerChild}
                                 >
                                     <CheckCircle2 size={20} className="text-teal mt-0.5 shrink-0" />
                                     <p className="text-textdark leading-relaxed">{feature}</p>
                                 </motion.div>
                             ))}
-                        </div>
+                        </motion.div>
                         <motion.div
                             className="bg-gradient-to-br from-navy to-blue-900 rounded-2xl p-8 flex items-center justify-center min-h-64"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5 }}
-                            viewport={{ once: true }}
+                            {...slideInRight}
                         >
                             <div className="text-center text-white/60">
                                 <div className="w-16 h-16 bg-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -186,20 +210,20 @@ export default function KirdarAI() {
             {/* STATS BAR */}
             <section className="bg-teal py-14">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-                        {stats.map((stat, i) => (
-                            <motion.div
-                                key={stat.label}
-                                initial={{ opacity: 0, y: 16 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                viewport={{ once: true }}
-                            >
-                                <div className="text-3xl md:text-4xl font-black mb-2">{stat.value}</div>
+                    <motion.div
+                        className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true }}
+                        variants={staggerContainer}
+                    >
+                        {stats.map((stat) => (
+                            <motion.div key={stat.label} variants={statReveal}>
+                                <div className="stat-number text-3xl md:text-4xl mb-2">{stat.value}</div>
                                 <div className="text-white/80 text-sm font-medium">{stat.label}</div>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 

@@ -7,13 +7,7 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { Search, Layers, Phone, BookOpen, GitMerge, CheckCircle2 } from 'lucide-react'
 import CTASection from '../components/CTASection'
-
-const fadeUp = {
-    initial: { opacity: 0, y: 28 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 },
-    viewport: { once: true },
-}
+import { staggerContainer, staggerChild } from '../utils/animations'
 
 const accelerators = [
     {
@@ -39,7 +33,7 @@ const accelerators = [
         badge: 'Data Privacy / AI Development',
         icon: Layers,
         title: 'SyntheticEdge',
-        body: 'SyntheticEdge is a cutting-edge accelerator designed to solve the critical challenge of data unavailability and PII constraints in AI projects. This tool generates high-quality synthetic data that mimics real-world scenarios while ensuring compliance with data privacy regulations. By eliminating reliance on actual sensitive data, SyntheticEdge enables organizations to fast-track AI use case development from testing to production. With its robust simulation capabilities, SyntheticEdge creates production-like datasets that are statistically and contextually accurate, offering a seamless alternative to traditional data scrambling. This ensures AI models are trained and validated with realistic yet non-identifiable data. The platform is designed to empower businesses to simulate complex test cases and edge scenarios effortlessly, accelerating the development and deployment cycle. Whether it\'s for predictive analytics, machine learning, or large-scale AI systems, SyntheticEdge delivers scalable, secure, and high-quality synthetic data solutions tailored to meet diverse industry needs.',
+        body: "SyntheticEdge is a cutting-edge accelerator designed to solve the critical challenge of data unavailability and PII constraints in AI projects. This tool generates high-quality synthetic data that mimics real-world scenarios while ensuring compliance with data privacy regulations. By eliminating reliance on actual sensitive data, SyntheticEdge enables organizations to fast-track AI use case development from testing to production. With its robust simulation capabilities, SyntheticEdge creates production-like datasets that are statistically and contextually accurate, offering a seamless alternative to traditional data scrambling. This ensures AI models are trained and validated with realistic yet non-identifiable data. The platform is designed to empower businesses to simulate complex test cases and edge scenarios effortlessly, accelerating the development and deployment cycle. Whether it's for predictive analytics, machine learning, or large-scale AI systems, SyntheticEdge delivers scalable, secure, and high-quality synthetic data solutions tailored to meet diverse industry needs.",
         features: [
             'Generates statistically and contextually accurate production-like datasets',
             'Full PII compliance — no real sensitive data required at any stage',
@@ -55,7 +49,7 @@ const accelerators = [
         badge: 'Conversational AI',
         icon: Phone,
         title: 'PromptLine',
-        body: 'PromptLine is an intelligent conversational AI accelerator designed to revolutionize customer interactions and streamline business operations over the phone. Built for businesses across various industries, PromptLine provides a simple yet powerful solution for managing everyday customer needs. With its advanced AI capabilities, PromptLine can answer frequently asked questions (FAQs), help schedule appointments, report issues, track inquiries, and provide updates — all through intuitive voice or text-based interactions. This enables businesses to offer prompt and accurate responses, improving customer satisfaction while reducing operational overhead. PromptLine seamlessly integrates with existing workflows, ensuring businesses can efficiently manage operations without requiring extensive training or technical expertise. It empowers teams to focus on complex tasks while leaving routine customer interactions to the AI. Whether it\'s handling high call volumes or ensuring 24/7 availability, PromptLine provides a reliable, user-friendly, and scalable conversational AI solution, driving operational efficiency and enhancing customer experiences.',
+        body: "PromptLine is an intelligent conversational AI accelerator designed to revolutionize customer interactions and streamline business operations over the phone. Built for businesses across various industries, PromptLine provides a simple yet powerful solution for managing everyday customer needs. With its advanced AI capabilities, PromptLine can answer frequently asked questions (FAQs), help schedule appointments, report issues, track inquiries, and provide updates — all through intuitive voice or text-based interactions. This enables businesses to offer prompt and accurate responses, improving customer satisfaction while reducing operational overhead. PromptLine seamlessly integrates with existing workflows, ensuring businesses can efficiently manage operations without requiring extensive training or technical expertise. It empowers teams to focus on complex tasks while leaving routine customer interactions to the AI. Whether it's handling high call volumes or ensuring 24/7 availability, PromptLine provides a reliable, user-friendly, and scalable conversational AI solution, driving operational efficiency and enhancing customer experiences.",
         features: [
             'Answers FAQs, schedules appointments, and tracks inquiries via voice or text',
             'Seamlessly integrates with existing business workflows',
@@ -110,28 +104,35 @@ export default function Accelerators() {
             {/* HERO */}
             <section className="bg-navy py-20">
                 <div className="max-w-4xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp}>
-                        <span className="bg-gold text-navy text-xs font-semibold rounded-full px-3 py-1 inline-block mb-5">
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={staggerContainer}
+                    >
+                        <motion.span variants={staggerChild} className="bg-gold text-navy text-xs font-semibold rounded-full px-3 py-1 inline-block mb-5">
                             Accelerator Factory
-                        </span>
-                        <h1 className="text-white mb-6">Accelerators</h1>
-                        <p className="text-white/70 text-lg leading-relaxed mb-8">
+                        </motion.span>
+                        <motion.h1 variants={staggerChild} className="text-white mb-6">Accelerators</motion.h1>
+                        <motion.p variants={staggerChild} className="text-white/70 text-lg leading-relaxed mb-8">
                             AI Accelerators are essential for rapidly testing and refining ideas, enabling quick validation of concepts before full-scale implementation. They help businesses re-evaluate strategies, affirm the feasibility of AI-driven solutions, and identify potential roadblocks early. Theoremlabs is an accelerator factory, designed to enable fast development and continuous innovation. By streamlining experimentation, accelerators reduce time-to-market, driving faster growth and giving your business a competitive edge.
-                        </p>
-                        <Link to="/lets-be-in-touch" className="btn-primary">Talk to Us About Your Use Case</Link>
+                        </motion.p>
+                        <motion.div variants={staggerChild}>
+                            <Link to="/lets-be-in-touch" className="btn-primary">Talk to Us About Your Use Case</Link>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
 
             {/* ACCELERATOR SECTIONS */}
-            {accelerators.map((acc, i) => (
+            {accelerators.map((acc) => (
                 <section key={acc.id} className={`${acc.bg} py-20`}>
                     <div className="max-w-7xl mx-auto px-6 md:px-8">
                         <motion.div
                             className="grid grid-cols-1 md:grid-cols-5 gap-10 items-start"
                             initial={{ opacity: 0, y: 28 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
+                            transition={{ duration: 0.55, ease: [0.25, 0.1, 0.25, 1] }}
                             viewport={{ once: true }}
                         >
                             {/* Icon + Badge */}
@@ -147,15 +148,21 @@ export default function Accelerators() {
                                 {acc.tagline && (
                                     <p className="text-teal font-semibold text-lg mb-4 italic">{acc.tagline}</p>
                                 )}
-                                <p className="text-textmuted leading-relaxed mb-6">{acc.body}</p>
-                                <div className="space-y-3 mb-8">
+                                <p className="text-textmuted leading-relaxed mb-8">{acc.body}</p>
+                                <motion.div
+                                    className="space-y-4 mb-8"
+                                    initial="initial"
+                                    whileInView="whileInView"
+                                    viewport={{ once: true, margin: '-40px' }}
+                                    variants={staggerContainer}
+                                >
                                     {acc.features.map((feat, fi) => (
-                                        <div key={fi} className="flex gap-3 items-start">
+                                        <motion.div key={fi} className="flex gap-3 items-start" variants={staggerChild}>
                                             <CheckCircle2 size={18} className="text-teal mt-0.5 shrink-0" />
                                             <p className="text-textdark text-sm leading-relaxed">{feat}</p>
-                                        </div>
+                                        </motion.div>
                                     ))}
-                                </div>
+                                </motion.div>
                                 <Link to="/lets-be-in-touch" className="btn-primary">Connect With Us</Link>
                             </div>
                         </motion.div>

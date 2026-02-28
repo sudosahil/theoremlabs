@@ -10,13 +10,7 @@ import {
     Brain, MapPin, GitMerge, Layers, Phone, BookOpen, Search
 } from 'lucide-react'
 import CTASection from '../components/CTASection'
-
-const fadeUp = {
-    initial: { opacity: 0, y: 32 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 },
-    viewport: { once: true },
-}
+import { fadeUp, staggerContainer, staggerChild, statReveal } from '../utils/animations'
 
 function NetworkSVG() {
     return (
@@ -108,22 +102,31 @@ export default function Home() {
             <section className="bg-navy py-20 md:py-28">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
-                        <motion.div className="md:col-span-3" {...fadeUp}>
-                            <span className="bg-teal/20 text-teal rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest inline-block mb-6">
+                        <motion.div
+                            className="md:col-span-3"
+                            initial="initial"
+                            whileInView="whileInView"
+                            viewport={{ once: true, margin: '-40px' }}
+                            variants={staggerContainer}
+                        >
+                            <motion.span
+                                variants={staggerChild}
+                                className="bg-teal/20 text-teal rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-widest inline-block mb-6 badge-cursor"
+                            >
                                 AI-First Fintech Innovation
-                            </span>
-                            <h1 className="text-white mb-6">The new software era</h1>
-                            <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-xl">
+                            </motion.span>
+                            <motion.h1 variants={staggerChild} className="text-white mb-5">The new software era</motion.h1>
+                            <motion.p variants={staggerChild} className="text-white/70 text-lg leading-relaxed mb-10 max-w-2xl">
                                 Theoremlabs is a hybrid of management consulting, build & experimentation labs for Fintech products that apply advances in AI, Data, Cloud and mature Web 3 technologies.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-4">
+                            </motion.p>
+                            <motion.div variants={staggerChild} className="flex flex-col sm:flex-row gap-4">
                                 <Link to="/art-of-possible-labs" className="btn-primary">
                                     Explore What's Possible
                                 </Link>
                                 <Link to="/our-team" className="btn-secondary">
                                     Meet Our Team
                                 </Link>
-                            </div>
+                            </motion.div>
                         </motion.div>
                         <motion.div
                             className="md:col-span-2"
@@ -141,16 +144,28 @@ export default function Home() {
             {/* WHAT WE DO */}
             <section className="bg-offwhite py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <span className="section-label">WHAT WE DO</span>
-                        <h2 className="text-textdark mb-4">
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.span variants={staggerChild} className="section-label">WHAT WE DO</motion.span>
+                        <motion.h2 variants={staggerChild} className="text-textdark mb-4">
                             Theoremlabs blends management consulting with build & experimentation labs, offering tailored solutions for Fintech products.
-                        </h2>
-                        <p className="text-textmuted max-w-3xl mx-auto">
+                        </motion.h2>
+                        <motion.p variants={staggerChild} className="text-textmuted max-w-3xl mx-auto">
                             We leverage AI, Data, Cloud, and Web 3 technologies to deliver innovative, scalable, and future-ready financial solutions, bridging the gap between vision and execution.
-                        </p>
+                        </motion.p>
                     </motion.div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
                         {[
                             {
                                 icon: Lightbulb,
@@ -170,14 +185,11 @@ export default function Home() {
                                 body: 'AI Accelerators like Theoremlabs drive rapid experimentation and innovation, enabling businesses to validate ideas quickly and gain a competitive edge.',
                                 href: '/accelerators',
                             },
-                        ].map((card, i) => (
+                        ].map((card) => (
                             <motion.div
                                 key={card.title}
                                 className="card-light flex flex-col"
-                                initial={{ opacity: 0, y: 24 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <card.icon size={32} className="text-teal mb-4" />
                                 <h3 className="text-textdark mb-3">{card.title}</h3>
@@ -187,42 +199,57 @@ export default function Home() {
                                 </Link>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* WHY US */}
             <section className="bg-navy py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <span className="section-label">WHY US</span>
-                        <h2 className="text-white">Expertise, Innovation and Efficiency in the Age of AI</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-14"
+                    >
+                        <motion.span variants={staggerChild} className="section-label">WHY US</motion.span>
+                        <motion.h2 variants={staggerChild} className="text-white">Expertise, Innovation and Efficiency in the Age of AI</motion.h2>
                     </motion.div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
                         {whyUsCards.map((card, i) => (
                             <motion.div
                                 key={card.title}
                                 className={`card-dark ${i === 4 ? 'md:col-span-2 md:max-w-xl md:mx-auto' : ''}`}
-                                initial={{ opacity: 0, y: 24 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: (i % 2) * 0.1 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <card.icon size={28} className="text-teal mb-4" />
                                 <h3 className="text-white text-xl mb-3">{card.title}</h3>
                                 <p className="text-white/70 leading-relaxed">{card.body}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* PRODUCTS SHOWCASE */}
             <section className="bg-offwhite py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <span className="section-label">OUR PRODUCTS</span>
-                        <h2 className="text-textdark">Built for the Future of Fintech</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.span variants={staggerChild} className="section-label">OUR PRODUCTS</motion.span>
+                        <motion.h2 variants={staggerChild} className="text-textdark">Built for the Future of Fintech</motion.h2>
                     </motion.div>
 
                     {/* Featured Products */}
@@ -273,15 +300,15 @@ export default function Home() {
                     </div>
 
                     {/* Accelerator Tiles */}
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                        {acceleratorTiles.map((tile, i) => (
-                            <motion.div
-                                key={tile.name}
-                                initial={{ opacity: 0, y: 16 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3, delay: i * 0.07 }}
-                                viewport={{ once: true }}
-                            >
+                    <motion.div
+                        className="grid grid-cols-2 md:grid-cols-5 gap-4"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
+                        {acceleratorTiles.map((tile) => (
+                            <motion.div key={tile.name} variants={staggerChild}>
                                 <Link
                                     to="/accelerators"
                                     className="card-light flex flex-col items-center text-center gap-2 p-4 hover:border-teal border border-transparent"
@@ -292,27 +319,27 @@ export default function Home() {
                                 </Link>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* STATS BAR */}
-            <section className="bg-teal py-14">
+            <section className="bg-teal py-16">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-                        {stats.map((stat, i) => (
-                            <motion.div
-                                key={stat.label}
-                                initial={{ opacity: 0, y: 16 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                viewport={{ once: true }}
-                            >
-                                <div className="text-4xl md:text-5xl font-black mb-2">{stat.value}</div>
+                    <motion.div
+                        className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true }}
+                        variants={staggerContainer}
+                    >
+                        {stats.map((stat) => (
+                            <motion.div key={stat.label} variants={statReveal}>
+                                <div className="stat-number text-4xl md:text-5xl mb-2">{stat.value}</div>
                                 <div className="text-white/80 text-sm font-medium">{stat.label}</div>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 

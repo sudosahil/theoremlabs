@@ -94,8 +94,8 @@ function NavItem({ item, location }) {
         <Link
             to={item.href}
             className={`text-sm font-medium transition pb-0.5 ${isActive
-                    ? 'text-teal border-b-2 border-teal'
-                    : 'text-white hover:text-teal'
+                ? 'text-teal border-b-2 border-teal'
+                : 'text-white hover:text-teal'
                 }`}
         >
             {item.label}
@@ -115,7 +115,7 @@ export default function Navbar() {
     return (
         <nav
             className="fixed top-0 left-0 right-0 z-50"
-            style={{ height: '72px', borderBottom: '1px solid rgba(255,255,255,0.08)', background: '#0D1B2E' }}
+            style={{ height: '72px', borderBottom: '1px solid rgba(255,255,255,0.08)', background: '#0A1628' }}
             aria-label="Main navigation"
         >
             <div className="max-w-7xl mx-auto px-6 md:px-8 h-full flex items-center justify-between">

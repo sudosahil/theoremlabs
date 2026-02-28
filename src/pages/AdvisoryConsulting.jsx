@@ -10,13 +10,7 @@ import {
     MessageSquare, Search, FileText, Rocket
 } from 'lucide-react'
 import CTASection from '../components/CTASection'
-
-const fadeUp = {
-    initial: { opacity: 0, y: 28 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 },
-    viewport: { once: true },
-}
+import { staggerContainer, staggerChild, fadeUp } from '../utils/animations'
 
 const services = [
     {
@@ -75,26 +69,30 @@ export default function AdvisoryConsulting() {
             {/* HERO */}
             <section className="bg-navy py-20">
                 <div className="max-w-4xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp}>
-                        <h1 className="text-white mb-6">Advisory & Consulting</h1>
-                        <p className="text-white/70 text-lg leading-relaxed mb-8">
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={staggerContainer}
+                    >
+                        <motion.h1 variants={staggerChild} className="text-white mb-6">Advisory & Consulting</motion.h1>
+                        <motion.p variants={staggerChild} className="text-white/70 text-lg leading-relaxed mb-8">
                             We work closely with CIOs and executives to develop robust strategies and business cases for automation, modernization, and AI-ML initiatives. Our expertise lies in aligning technology investments with business goals, ensuring a clear ROI, and mitigating risks.
-                        </p>
-                        <Link to="/lets-be-in-touch" className="btn-primary">Talk to Our Experts</Link>
+                        </motion.p>
+                        <motion.div variants={staggerChild}>
+                            <Link to="/lets-be-in-touch" className="btn-primary">Talk to Our Experts</Link>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
 
             {/* 6 SERVICES */}
-            {services.map((service, i) => (
-                <section key={service.title} className={`${service.bg} py-16`}>
+            {services.map((service) => (
+                <section key={service.title} className={`${service.bg} py-20`}>
                     <div className="max-w-7xl mx-auto px-6 md:px-8">
                         <motion.div
                             className="grid grid-cols-1 md:grid-cols-6 gap-8 items-center"
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            viewport={{ once: true }}
+                            {...fadeUp}
                         >
                             <div className="md:col-span-1 flex items-center justify-center md:justify-start">
                                 <div className="w-16 h-16 bg-teal/10 rounded-xl flex items-center justify-center">
@@ -102,7 +100,7 @@ export default function AdvisoryConsulting() {
                                 </div>
                             </div>
                             <div className="md:col-span-4">
-                                <h3 className="text-textdark text-2xl mb-3">{service.title}</h3>
+                                <h3 className="text-textdark text-2xl mb-4">{service.title}</h3>
                                 <p className="text-textmuted leading-relaxed">{service.body}</p>
                             </div>
                             <div className="md:col-span-1 flex md:justify-end">
@@ -118,18 +116,27 @@ export default function AdvisoryConsulting() {
             {/* HOW WE ENGAGE */}
             <section className="bg-offwhite py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <h2 className="text-textdark">How We Engage</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-textdark">How We Engage</motion.h2>
                     </motion.div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-4 gap-6"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
                         {engageSteps.map((step, i) => (
                             <motion.div
                                 key={step.title}
                                 className="relative card-light text-center"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <div className="w-12 h-12 bg-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <step.icon size={22} className="text-teal" />
@@ -139,7 +146,7 @@ export default function AdvisoryConsulting() {
                                 <p className="text-textmuted text-sm leading-relaxed">{step.body}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 

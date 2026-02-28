@@ -16,6 +16,7 @@ import ArtOfPossibleLabs from './pages/ArtOfPossibleLabs'
 import SetupDesignWorkshops from './pages/SetupDesignWorkshops'
 import BecomeAPartner from './pages/BecomeAPartner'
 import LetsBeInTouch from './pages/LetsBeInTouch'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/setup-design-workshops" element={<SetupDesignWorkshops />} />
           <Route path="/become-a-partner" element={<BecomeAPartner />} />
           <Route path="/lets-be-in-touch" element={<LetsBeInTouch />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

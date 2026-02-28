@@ -10,13 +10,7 @@ import {
     ClipboardList, Users, Code, BarChart2
 } from 'lucide-react'
 import CTASection from '../components/CTASection'
-
-const fadeUp = {
-    initial: { opacity: 0, y: 28 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 },
-    viewport: { once: true },
-}
+import { staggerContainer, staggerChild, fadeUp } from '../utils/animations'
 
 const focusAreas = [
     {
@@ -59,15 +53,22 @@ export default function ArtOfPossibleLabs() {
             {/* HERO */}
             <section className="bg-navy py-20">
                 <div className="max-w-4xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp}>
-                        <span className="bg-teal/20 text-teal text-xs font-semibold rounded-full px-3 py-1 inline-block mb-5">
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={staggerContainer}
+                    >
+                        <motion.span variants={staggerChild} className="bg-teal/20 text-teal text-xs font-semibold rounded-full px-3 py-1 inline-block mb-5">
                             Experiments & Pilots
-                        </span>
-                        <h1 className="text-white mb-6">Art of Possible Labs</h1>
-                        <p className="text-white/70 text-lg leading-relaxed mb-8">
+                        </motion.span>
+                        <motion.h1 variants={staggerChild} className="text-white mb-6">Art of Possible Labs</motion.h1>
+                        <motion.p variants={staggerChild} className="text-white/70 text-lg leading-relaxed mb-8">
                             Our experimentation and pilot lab is designed to validate critical and breakthrough hypotheses — both business and technology. We run structured experiments so you can make bold moves with confidence, not guesswork.
-                        </p>
-                        <Link to="/setup-design-workshops" className="btn-primary">Set Up a Design Workshop</Link>
+                        </motion.p>
+                        <motion.div variants={staggerChild}>
+                            <Link to="/setup-design-workshops" className="btn-primary">Set Up a Design Workshop</Link>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
@@ -87,43 +88,61 @@ export default function ArtOfPossibleLabs() {
             {/* 4 FOCUS AREAS */}
             <section className="bg-navy py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <h2 className="text-white">What We Experiment On</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-white">What We Experiment On</motion.h2>
                     </motion.div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {focusAreas.map((area, i) => (
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
+                        {focusAreas.map((area) => (
                             <motion.div
                                 key={area.title}
                                 className="card-dark"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: (i % 2) * 0.1 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <area.icon size={28} className="text-teal mb-4" />
                                 <h3 className="text-xl mb-3">{area.title}</h3>
                                 <p className="text-white/70 leading-relaxed">{area.body}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* EXPERIMENT PROCESS */}
             <section className="bg-offwhite py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <h2 className="text-textdark">Our Experiment Process</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-textdark">Our Experiment Process</motion.h2>
                     </motion.div>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-4 gap-6"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
                         {processSteps.map((step, i) => (
                             <motion.div
                                 key={step.title}
                                 className="card-light text-center"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <div className="w-12 h-12 bg-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <step.icon size={22} className="text-teal" />
@@ -133,7 +152,7 @@ export default function ArtOfPossibleLabs() {
                                 <p className="text-textmuted text-sm leading-relaxed">{step.body}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 

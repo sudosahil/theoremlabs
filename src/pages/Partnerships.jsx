@@ -9,13 +9,7 @@ import {
     Monitor, Database, Rocket, Network, UserCheck,
     GraduationCap, Server, Building2, CheckCircle2
 } from 'lucide-react'
-
-const fadeUp = {
-    initial: { opacity: 0, y: 28 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 },
-    viewport: { once: true },
-}
+import { staggerContainer, staggerChild } from '../utils/animations'
 
 const partnerTypes = [
     { icon: Monitor, title: 'Technology Providers', body: 'Companies offering cutting-edge tools, platforms, or frameworks that complement our AI-first approach.' },
@@ -49,11 +43,16 @@ export default function Partnerships() {
             {/* HERO */}
             <section className="bg-navy py-20">
                 <div className="max-w-4xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp}>
-                        <h1 className="text-white mb-6">Partner with TheoremLabs: Driving AI Innovation Together</h1>
-                        <p className="text-white/70 text-lg leading-relaxed">
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={staggerContainer}
+                    >
+                        <motion.h1 variants={staggerChild} className="text-white mb-6">Partner with TheoremLabs: Driving AI Innovation Together</motion.h1>
+                        <motion.p variants={staggerChild} className="text-white/70 text-lg leading-relaxed">
                             At TheoremLabs, we are committed to pushing the boundaries of what's possible with AI. As an AI-first company, we specialize in building transformative solutions that empower businesses across industries. Our mission is to create meaningful partnerships that drive innovation, deliver measurable impact, and unlock new opportunities in the rapidly evolving technology landscape.
-                        </p>
+                        </motion.p>
                     </motion.div>
                 </div>
             </section>
@@ -61,67 +60,92 @@ export default function Partnerships() {
             {/* WHO CAN PARTNER */}
             <section className="bg-offwhite py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <h2 className="text-textdark">Who Can Partner with Us?</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-textdark">Who Can Partner with Us?</motion.h2>
                     </motion.div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {partnerTypes.map((pt, i) => (
+                    <motion.div
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
+                        {partnerTypes.map((pt) => (
                             <motion.div
                                 key={pt.title}
                                 className="card-light"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: (i % 4) * 0.08 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <pt.icon size={28} className="text-teal mb-3" />
                                 <h3 className="text-textdark text-lg mb-2">{pt.title}</h3>
                                 <p className="text-textmuted text-sm leading-relaxed">{pt.body}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* WHY PARTNER */}
             <section className="bg-navy py-20">
                 <div className="max-w-4xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-10">
-                        <h2 className="text-white mb-3">Why Partner with TheoremLabs?</h2>
-                        <p className="text-white/60">At TheoremLabs, our partnerships are built on trust, collaboration, and shared success.</p>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-10"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-white mb-3">Why Partner with TheoremLabs?</motion.h2>
+                        <motion.p variants={staggerChild} className="text-white/60">At TheoremLabs, our partnerships are built on trust, collaboration, and shared success.</motion.p>
                     </motion.div>
-                    <div className="space-y-4">
+                    <motion.div
+                        className="space-y-5"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={staggerContainer}
+                    >
                         {whyPartner.map((item, i) => (
                             <motion.div
                                 key={i}
                                 className="flex gap-4 items-start"
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.4, delay: i * 0.06 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <CheckCircle2 size={20} className="text-teal mt-1 shrink-0" />
                                 <p className="text-white/80 leading-relaxed">{item}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* CLOSING CTA */}
             <section className="bg-teal py-20">
                 <div className="max-w-4xl mx-auto px-6 md:px-8 text-center">
-                    <motion.div {...fadeUp}>
-                        <h2 className="text-white mb-5">Let's Build the Future Together</h2>
-                        <p className="text-white/80 text-lg leading-relaxed mb-8">
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
+                        <motion.h2 variants={staggerChild} className="text-white mb-5">Let's Build the Future Together</motion.h2>
+                        <motion.p variants={staggerChild} className="text-white/80 text-lg leading-relaxed mb-8">
                             Whether you're a technology innovator, an enterprise leader, or an academic pioneer, TheoremLabs is your ideal partner for AI-driven growth. Together, we can harness the power of artificial intelligence to solve complex challenges, uncover new opportunities, and create a lasting impact.
-                        </p>
-                        <Link
-                            to="/become-a-partner"
-                            className="bg-white text-teal rounded-lg px-6 py-3 font-semibold hover:bg-white/90 transition inline-flex items-center gap-2"
-                        >
-                            Become a Partner
-                        </Link>
+                        </motion.p>
+                        <motion.div variants={staggerChild}>
+                            <Link
+                                to="/become-a-partner"
+                                className="bg-white text-teal rounded-lg px-7 py-3.5 font-semibold hover:bg-white/90 transition inline-flex items-center gap-2 text-sm tracking-wide"
+                            >
+                                Become a Partner
+                            </Link>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>

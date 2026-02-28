@@ -7,17 +7,24 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { Mail, MapPin, Clock, Linkedin, Twitter, CheckCircle2 } from 'lucide-react'
-
-const fadeUp = {
-    initial: { opacity: 0, y: 28 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 },
-    viewport: { once: true },
-}
+import { staggerContainer, staggerChild, slideInLeft, slideInRight } from '../utils/animations'
 
 function ContactForm() {
     const { register, handleSubmit, formState: { errors, isSubmitSuccessful }, reset } = useForm()
-    const onSubmit = () => reset()
+
+    const onSubmit = async (data) => {
+        try {
+            // TODO: Replace CONTACT_FORM_ID with real ID from formspree.io — sign up free at formspree.io/register
+            await fetch('https://formspree.io/f/CONTACT_FORM_ID', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            })
+        } catch (err) {
+            console.error('Form submission error:', err)
+        }
+        reset()
+    }
 
     if (isSubmitSuccessful) {
         return (
@@ -87,21 +94,26 @@ export default function LetsBeInTouch() {
             {/* HERO */}
             <section className="bg-navy py-20 text-center">
                 <div className="max-w-4xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp}>
-                        <h1 className="text-white mb-5">Let's Be in Touch</h1>
-                        <p className="text-white/70 text-lg leading-relaxed">
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={staggerContainer}
+                    >
+                        <motion.h1 variants={staggerChild} className="text-white mb-5">Let's Be in Touch</motion.h1>
+                        <motion.p variants={staggerChild} className="text-white/70 text-lg leading-relaxed">
                             Have a question, a project in mind, or just want to learn more about what we do? Reach out — we'd love to hear from you.
-                        </p>
+                        </motion.p>
                     </motion.div>
                 </div>
             </section>
 
             {/* CONTACT + FORM */}
-            <section className="bg-offwhite py-20">
+            <section className="bg-offwhite py-24">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                         {/* Left Column */}
-                        <motion.div {...fadeUp}>
+                        <motion.div {...slideInLeft}>
                             <h2 className="text-textdark mb-3">Reach Our Expert Team</h2>
                             <p className="text-textmuted mb-8">
                                 Send a message through the form. If your enquiry is time sensitive please use the details below.
@@ -177,11 +189,8 @@ export default function LetsBeInTouch() {
 
                         {/* Right Column — Form */}
                         <motion.div
-                            className="bg-white rounded-2xl shadow-lg p-8"
-                            initial={{ opacity: 0, x: 24 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5 }}
-                            viewport={{ once: true }}
+                            className="bg-white rounded-2xl shadow-lg p-10"
+                            {...slideInRight}
                         >
                             <h3 className="text-textdark text-2xl font-bold mb-6">Send Us a Message</h3>
                             <ContactForm />

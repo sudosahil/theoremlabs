@@ -10,13 +10,7 @@ import {
     PackageOpen, Lightbulb, Briefcase, Code2,
     TrendingUp, GraduationCap, Heart, Shield, Sliders, CheckCircle2
 } from 'lucide-react'
-
-const fadeUp = {
-    initial: { opacity: 0, y: 28 },
-    whileInView: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 },
-    viewport: { once: true },
-}
+import { staggerContainer, staggerChild } from '../utils/animations'
 
 const opportunities = [
     { icon: PackageOpen, title: 'Product Implementation Partners', body: 'Collaborate with us to implement your products into new markets, ensuring seamless integration and adoption by leveraging our expertise in software development and AI.' },
@@ -45,7 +39,19 @@ const expectations = [
 function PartnerForm() {
     const { register, handleSubmit, formState: { errors, isSubmitSuccessful }, reset } = useForm()
 
-    const onSubmit = () => reset()
+    const onSubmit = async (data) => {
+        try {
+            // TODO: Replace PARTNER_FORM_ID with real ID from formspree.io — sign up free at formspree.io/register
+            await fetch('https://formspree.io/f/PARTNER_FORM_ID', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            })
+        } catch (err) {
+            console.error('Form submission error:', err)
+        }
+        reset()
+    }
 
     if (isSubmitSuccessful) {
         return (
@@ -128,12 +134,19 @@ export default function BecomeAPartner() {
             {/* HERO */}
             <section className="bg-navy py-20">
                 <div className="max-w-4xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp}>
-                        <h1 className="text-white mb-6">Become a Partner</h1>
-                        <p className="text-white/70 text-lg leading-relaxed mb-8">
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={staggerContainer}
+                    >
+                        <motion.h1 variants={staggerChild} className="text-white mb-6">Become a Partner</motion.h1>
+                        <motion.p variants={staggerChild} className="text-white/70 text-lg leading-relaxed mb-8">
                             At TheoremLabs, we believe in the power of collaboration to drive innovation, deliver exceptional value, and create transformative solutions. As a cutting-edge AI, Advice, Consulting, and Development Labs company, we are actively seeking strategic partners who share our vision for shaping the future of technology and business. By partnering with TheoremLabs, you join a network of innovators, problem-solvers, and technology pioneers committed to delivering impactful solutions in a fast-changing digital landscape.
-                        </p>
-                        <a href="#form" onClick={scrollToForm} className="btn-primary">Submit Your Interest</a>
+                        </motion.p>
+                        <motion.div variants={staggerChild}>
+                            <a href="#form" onClick={scrollToForm} className="btn-primary">Submit Your Interest</a>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
@@ -141,43 +154,61 @@ export default function BecomeAPartner() {
             {/* PARTNERSHIP OPPORTUNITIES */}
             <section className="bg-offwhite py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <h2 className="text-textdark">Our Partnership Opportunities</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-textdark">Our Partnership Opportunities</motion.h2>
                     </motion.div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {opportunities.map((opp, i) => (
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
+                        {opportunities.map((opp) => (
                             <motion.div
                                 key={opp.title}
                                 className="card-light"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: (i % 2) * 0.08 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <opp.icon size={28} className="text-teal mb-3" />
                                 <h3 className="text-textdark text-lg mb-2">{opp.title}</h3>
                                 <p className="text-textmuted text-sm leading-relaxed">{opp.body}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* WHY PARTNER */}
             <section className="bg-navy py-20">
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-12">
-                        <h2 className="text-white">Why Partner with Us?</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-12"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-white">Why Partner with Us?</motion.h2>
                     </motion.div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {whyPartner.map((item, i) => (
+                    <motion.div
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                    >
+                        {whyPartner.map((item) => (
                             <motion.div
                                 key={item.title}
                                 className="card-dark text-center"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: i * 0.1 }}
-                                viewport={{ once: true }}
+                                variants={staggerChild}
                             >
                                 <div className="w-12 h-12 bg-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <item.icon size={22} className="text-teal" />
@@ -186,40 +217,55 @@ export default function BecomeAPartner() {
                                 <p className="text-white/70 text-sm leading-relaxed">{item.body}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* WHAT YOU CAN EXPECT */}
             <section className="bg-offwhite py-20">
                 <div className="max-w-4xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-10">
-                        <h2 className="text-textdark">What You Can Expect From Us</h2>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-10"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-textdark">What You Can Expect From Us</motion.h2>
                     </motion.div>
-                    <div className="space-y-4">
+                    <motion.div
+                        className="space-y-4"
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={staggerContainer}
+                    >
                         {expectations.map((item, i) => (
                             <motion.div
                                 key={i}
-                                className="flex gap-4 items-center bg-white rounded-xl p-5 shadow-sm"
-                                initial={{ opacity: 0, x: -16 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.3, delay: i * 0.07 }}
-                                viewport={{ once: true }}
+                                className="flex gap-4 items-center bg-white rounded-2xl p-5 shadow-sm border border-gray-100"
+                                variants={staggerChild}
                             >
                                 <CheckCircle2 size={20} className="text-teal shrink-0" />
                                 <p className="text-textdark font-medium">{item}</p>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* PARTNER FORM */}
             <section id="form" className="bg-navy py-20">
                 <div className="max-w-2xl mx-auto px-6 md:px-8">
-                    <motion.div {...fadeUp} className="text-center mb-10">
-                        <h2 className="text-white mb-3">Ready to Explore a Partnership?</h2>
-                        <p className="text-white/60">Fill in the form below and we'll be in touch within 2 business days.</p>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={staggerContainer}
+                        className="text-center mb-10"
+                    >
+                        <motion.h2 variants={staggerChild} className="text-white mb-3">Ready to Explore a Partnership?</motion.h2>
+                        <motion.p variants={staggerChild} className="text-white/60">Fill in the form below and we'll be in touch within 2 business days.</motion.p>
                     </motion.div>
                     <PartnerForm />
                     <p className="text-center text-white/50 text-sm mt-6">
